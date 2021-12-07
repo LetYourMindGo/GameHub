@@ -20,9 +20,8 @@ export const getOneGame = async (req, res) => {
     let game = await client.db("GameHub").collection("games").findOne({ id });
     await client.close();
     if (!game) {
-      game = "No game found on db";
-      // game = getGameInfo(id);
-      // await createGame(game);
+      game = await getGameInfo(id);
+      await createGame(game);
     }
     res.status(200).send(game);
   } catch (err) {
@@ -35,7 +34,7 @@ export const getProfileGames = async (req, res) => {
     const { idArray } = req.body;
     const games = await Promise.all(idArray.map(async id => {
       await client.connect();
-      const game = await client.db("GameHub").collection("games").findOne({ id: id.toString() });
+      const game = await client.db("GameHub").collection("games").findOne({ id });
       const info = {id: game.id, name: game.name, background: game.background};
       await client.close();
       return info;
@@ -45,19 +44,3 @@ export const getProfileGames = async (req, res) => {
     console.log(err);
   } 
 };
-
-
-// async function createListing(client, newListing){
-//   const result = await client.db("sample_airbnb").collection("listingsAndReviews").insertOne(newListing);
-//   console.log(`New listing created with the following id: ${result.insertedId}`);
-// }
-
-// await createListing(client,
-//   {
-//       name: "Lovely Loft",
-//       summary: "A charming loft in Paris",
-//       bedrooms: 1,
-//       bathrooms: 1
-//   }
-// );
-

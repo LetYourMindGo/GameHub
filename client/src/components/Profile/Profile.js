@@ -20,7 +20,7 @@ const Profile = () => {
 
   const getGameData = async ids => {
     const urlDev = 'http://localhost:4123';
-    const url = 'https://gamehub-gameserver.herokuapp.com';
+    // const url = 'https://gamehub-gameserver.herokuapp.com';
 
     const gameData = await axios.post(`${urlDev}/api/profile-games`, {idArray: ids});
     return gameData.data;
@@ -28,7 +28,7 @@ const Profile = () => {
 
   const handleLoad = async () => {
     const urlDev = 'http://localhost:8123';
-    const url = 'https://gamehub-userserver.herokuapp.com';
+    // const url = 'https://gamehub-userserver.herokuapp.com';
 
     const userGames = await axios.get(`${urlDev}/user/${user.userData.username}`);
     
@@ -58,16 +58,6 @@ const Profile = () => {
     navigate('/');
   };
 
-  const move = e => {
-    e.preventDefault();
-    navigate('/game/123');
-  }
-
-  const moveIt = e => {
-    e.preventDefault();
-    navigate('/game/467');
-  }
-
   useEffect(() => {
     handleLoad();
   }, []);
@@ -90,9 +80,6 @@ const Profile = () => {
           { user.accessToken &&
           <button className="info__logout" onClick={handleLogout}>Logout</button>
           }
-          <button onClick={move}>Magic button</button>
-
-          <button onClick={moveIt}>Magic button for witcher</button>
         </div>
       </div>
       <div className="page-content__profile-games">

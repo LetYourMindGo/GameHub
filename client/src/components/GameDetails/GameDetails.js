@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import LoadingFrame from '../LoadingFrame/LoadingFrame'
 import './GameDetails.css';
 
 const GameDetails = () => {
@@ -17,14 +16,14 @@ const GameDetails = () => {
 
   const getGameStatus = async (username, gameId) => {
     const urlDev = 'http://localhost:8123';
-    const url = 'https://gamehub-userserver.herokuapp.com';
+    // const url = 'https://gamehub-userserver.herokuapp.com';
     const status = await axios.post(`${urlDev}/user/game-status`, { username, gameId });
     return status;
   }
   
   const getGameInfo = async gameId => {
     const urlDev = 'http://localhost:4123';
-    const url = 'https://gamehub-gameserver.herokuapp.com';
+    // const url = 'https://gamehub-gameserver.herokuapp.com';
     const data = await axios.get(`${urlDev}/api/game/${gameId}`);
     setGameInfo(data.data);
     const status = await getGameStatus(username, gameId);
@@ -38,7 +37,7 @@ const GameDetails = () => {
     e.preventDefault();
     setGameStatus(e.target.id);
     const urlDev = 'http://localhost:8123';
-    const url = 'https://gamehub-userserver.herokuapp.com';
+    // const url = 'https://gamehub-userserver.herokuapp.com';
     await axios.put(`${urlDev}/user/addgame`, {
       username,
       gameId: id,
@@ -57,7 +56,6 @@ const GameDetails = () => {
 
   return (
     <div className="page-content__game-container">
-      {/* {gameInfo.length === 0 && <LoadingFrame />} */}
       {gameInfo && (
         <>
           <div className="game-container__button-container">

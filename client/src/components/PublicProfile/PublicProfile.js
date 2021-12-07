@@ -15,7 +15,7 @@ const PublicProfile = () => {
   const { name } = useParams();
 
   const urlDev = 'http://localhost:8123';
-  const url = 'https://gamehub-userserver.herokuapp.com';
+  // const url = 'https://gamehub-userserver.herokuapp.com';
   
   const getData = async () => {
     const data = await axios.get(`${urlDev}/users/${name}`);
@@ -27,7 +27,7 @@ const PublicProfile = () => {
 
   const getGameData = async ids => {
     const urlDev = 'http://localhost:4123';
-    const url = 'https://gamehub-gameserver.herokuapp.com';
+    // const url = 'https://gamehub-gameserver.herokuapp.com';
 
     const gameData = await axios.post(`${urlDev}/api/profile-games`, {idArray: ids});
     return gameData.data;
@@ -35,7 +35,7 @@ const PublicProfile = () => {
 
   const handleLoad = async () => {
     const urlDev = 'http://localhost:8123';
-    const url = 'https://gamehub-userserver.herokuapp.com';
+    // const url = 'https://gamehub-userserver.herokuapp.com';
 
     const userGames = await axios.get(`${urlDev}/user/${name}`);
 

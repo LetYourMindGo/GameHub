@@ -17,14 +17,14 @@ const Burger = () => {
 
   const fetchGenres = async () => {
     const urlDev = 'http://localhost:4123';
-    const url = 'https://gamehub-gameserver.herokuapp.com';
+    // const url = 'https://gamehub-gameserver.herokuapp.com';
 
     const data = await axios.get(`${urlDev}/api/genres`);
     setGenres(data.data);
   };
 
   useEffect(() => {
-    // fetchGenres();
+    fetchGenres();
   }, [])
 
   return (

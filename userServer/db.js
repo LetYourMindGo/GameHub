@@ -54,7 +54,7 @@ export const fetchGameList = async username => {
 
     const games = await client.query(`SELECT * FROM "Users"."${username}"`);
     if (!games.rows) {
-      console.log('no games');
+      return 'No games';
     }
     client.release();
     return user.rows;

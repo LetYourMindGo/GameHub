@@ -98,7 +98,7 @@ const getGame = async name => {
         'Client-ID': process.env.IGDB_CLIENT_ID,
         'Authorization': `Bearer ${accessToken.data.access_token}`,
     },
-    data: `search "${name}"; fields artworks,videos;`
+    data: `search "${name}"; fields artworks;`
   });
 
   const game = data.data[0];
@@ -107,7 +107,7 @@ const getGame = async name => {
     return;
   }
 
-  if (!game.artworks && !game.videos) {
+  if (!game.artworks) {
     return;
   }
   
@@ -125,11 +125,7 @@ const getGame = async name => {
     game.image = imageData.data[0].url.replace('t_thumb', 't_screenshot_med');
   }
 
-  if (!game.videos) {
-    game.videos = 'none';
-  };
-
-  return game;
+  return {image: game.image};
 };
 
 const getGameHowLong = async name => {
@@ -163,6 +159,7 @@ export const getGameInfo = async id => {
     platforms: dataRAWG.data.platforms.map(platform => platform.platform.name),
     description: dataRAWG.data.description,
     background: dataRAWG.data.background_image,
+    id: dataRAWG.data.id
   }
   
   const dataIGDB = await getGame(resultsRAWG.name);
