@@ -79,8 +79,10 @@ const Profile = () => {
         </div>
         <div className="profile__info">
           <h2 className="info__username">{user.userData.username}</h2>
-          <p className="info__details">Games played: 52</p>
-          <p className="info__details">Reviews written: 75</p>
+          <p className="info__details">Games played: {played.length}</p>
+          <p className="info__details">Games playing: {playing.length}</p>
+          <p className="info__details">Wish to play: {wish.length}</p>
+          <p className="info__details">Reviews written: 0</p>
           { user.accessToken &&
           <button className="info__logout" onClick={handleLogout}>Logout</button>
           }
@@ -92,21 +94,21 @@ const Profile = () => {
       <div className="page-content__profile-games">
         { played.length > 0 &&
         <>
-          <h2 className="profile-games__title">Games marked as played <span className="title__number">( {played.length} )</span></h2>
+          <h2 className="profile-games__title">Games marked as played</h2>
           <div className="profile-games__played">
             {played.map(game => <ProfileGame game={game} />)}
           </div>
         </> }
         { wish.length > 0 &&
         <>
-          <h2 className="profile-games__title">Games marked as wish to play<span className="title__number">( {wish.length} )</span></h2>
+          <h2 className="profile-games__title">Games marked as wish to play</h2>
           <div className="profile-games__wish">
             {wish.map(game => <ProfileGame game={game} />)}
           </div>
         </> }
         { playing.length > 0 &&
         <>
-          <h2 className="profile-games__title">Games marked as playing<span className="title__number">( {playing.length} )</span></h2>
+          <h2 className="profile-games__title">Games marked as playing</h2>
           <div className="profile-games__playing">
             {playing.map(game => <ProfileGame game={game} />)}
           </div>
