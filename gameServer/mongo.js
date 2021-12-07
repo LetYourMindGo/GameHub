@@ -17,7 +17,7 @@ export const getOneGame = async (req, res) => {
   try {
     const { id } = req.params;
     await client.connect();
-    let game = await client.db("GameHub").collection("games").findOne({ id });
+    let game = await client.db("GameHub").collection("games").findOne({ id: parseInt(id, 10) });
     await client.close();
     if (!game) {
       game = await getGameInfo(id);

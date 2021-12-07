@@ -87,21 +87,21 @@ const Profile = () => {
         <>
           <h2 className="profile-games__title">Games marked as played</h2>
           <div className="profile-games__played">
-            {played.map(game => <ProfileGame game={game} />)}
+            {played.map(game => <ProfileGame game={game} key={game.name} />)}
           </div>
         </> }
         { wish.length > 0 &&
         <>
           <h2 className="profile-games__title">Games marked as wish to play</h2>
           <div className="profile-games__wish">
-            {wish.map(game => <ProfileGame game={game} />)}
+            {wish.map(game => <ProfileGame game={game} key={game.name} />)}
           </div>
         </> }
         { playing.length > 0 &&
         <>
           <h2 className="profile-games__title">Games marked as playing</h2>
           <div className="profile-games__playing">
-            {playing.map(game => <ProfileGame game={game} />)}
+            {playing.map(game => <ProfileGame game={game} key={game.name} />)}
           </div>
         </> }
       </div>

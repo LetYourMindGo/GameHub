@@ -13,7 +13,7 @@ const ProfileGame = ({ game }) => {
   return (
     <div className="games__main-container">
       <div className="main-container__left" onClick={handleClick}>
-        <img className="left__image" src={game.background} />
+        <img className="left__image" src={game.background} alt={game.name} />
       </div>
       <div className="main-container__right">
         <h3 className="right__title">{game.name}</h3>
