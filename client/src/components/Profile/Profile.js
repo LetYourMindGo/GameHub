@@ -92,21 +92,21 @@ const Profile = () => {
       <div className="page-content__profile-games">
         { played.length > 0 &&
         <>
-          <h2 className="profile-games__title">Games marked as played</h2>
+          <h2 className="profile-games__title">Games marked as played <span className="title__number">( {played.length} )</span></h2>
           <div className="profile-games__played">
             {played.map(game => <ProfileGame game={game} />)}
           </div>
         </> }
         { wish.length > 0 &&
         <>
-          <h2 className="profile-games__title">Games marked as wish to play</h2>
+          <h2 className="profile-games__title">Games marked as wish to play<span className="title__number">( {wish.length} )</span></h2>
           <div className="profile-games__wish">
             {wish.map(game => <ProfileGame game={game} />)}
           </div>
         </> }
         { playing.length > 0 &&
         <>
-          <h2 className="profile-games__title">Games marked as playing</h2>
+          <h2 className="profile-games__title">Games marked as playing<span className="title__number">( {playing.length} )</span></h2>
           <div className="profile-games__playing">
             {playing.map(game => <ProfileGame game={game} />)}
           </div>
