@@ -153,8 +153,7 @@ const getGameHowLong = async name => {
   return results;
 };
 
-export const getGameInfo = async (req, res) => {
-  const { id } = req.params;
+export const getGameInfo = async id => {
   const dataRAWG = await axios.get(`${baseUrlRAWG}games/${id}?&key=${process.env.RAWG_KEY}`);
 
   const resultsRAWG = {
@@ -169,5 +168,5 @@ export const getGameInfo = async (req, res) => {
   const dataIGDB = await getGame(resultsRAWG.name);
   const dataHLTB = await getGameHowLong(resultsRAWG.name);
 
-  res.send([resultsRAWG, dataHLTB, dataIGDB]);
+  return {...resultsRAWG, ...dataHLTB, ...dataIGDB}; //MAYBE ERROR LIVES HERE!
 }

@@ -125,4 +125,4 @@ app.post('/user/game-status', async (req, res) => {
 //   res.sendStatus(204)
 // })
 
-app.listen(process.env.PORT || 8080, () => console.log('App is running on port 8080'));
+app.listen(process.env.PORT || 8123, () => console.log('App is running on port 8123'));

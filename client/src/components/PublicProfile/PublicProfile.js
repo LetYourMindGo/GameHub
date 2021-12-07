@@ -11,7 +11,7 @@ const PublicProfile = () => {
 
   const { name } = useParams();
 
-  const urlDev = 'http://localhost:8080';
+  const urlDev = 'http://localhost:8123';
   const url = 'https://gamehub-userserver.herokuapp.com';
   
   const getData = async () => {
