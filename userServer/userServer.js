@@ -1,6 +1,6 @@
 import express from 'express';
 import { config } from 'dotenv';
-import { addUser, findByEmail, getProfileData, fetchGameList, updateGameList, getGameStatus } from './db.js';
+import { addUser, findByEmail, getProfileData, fetchGameList, updateGameList, getGameStatus, getUserGames } from './db.js';
 import cors from 'cors';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
@@ -103,7 +103,17 @@ app.post('/user/game-status', async (req, res) => {
   } catch {
     res.status(500).send();
   }
-})
+});
+
+app.get('/user/:name', async (req, res) => {
+  try {
+    const { name } = req.params;
+    const userGames = await getUserGames(name);
+    res.status(200).send(userGames);
+  } catch {
+    res.status(500).send();
+  }
+});
 
 
 

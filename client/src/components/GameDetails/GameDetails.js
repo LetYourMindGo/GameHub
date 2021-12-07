@@ -42,7 +42,7 @@ const GameDetails = () => {
     await axios.put(`${urlDev}/user/addgame`, {
       username,
       gameId: id,
-      gameName: "Skyrim", //CHANGE THIS
+      gameName: gameInfo.name, 
       status: e.target.id,
     })
   };

@@ -18,7 +18,6 @@ export const getOneGame = async (req, res) => {
     const { id } = req.params;
     await client.connect();
     let game = await client.db("GameHub").collection("games").findOne({ id });
-    console.log(game);
     await client.close();
     if (!game) {
       game = "No game found on db";
@@ -26,6 +25,22 @@ export const getOneGame = async (req, res) => {
       // await createGame(game);
     }
     res.status(200).send(game);
+  } catch (err) {
+    console.log(err);
+  } 
+};
+
+export const getProfileGames = async (req, res) => {
+  try {
+    const { idArray } = req.body;
+    const games = await Promise.all(idArray.map(async id => {
+      await client.connect();
+      const game = await client.db("GameHub").collection("games").findOne({ id: id.toString() });
+      const info = {id: game.id, name: game.name, background: game.background};
+      await client.close();
+      return info;
+    }));
+    res.status(200).send(games);
   } catch (err) {
     console.log(err);
   } 
