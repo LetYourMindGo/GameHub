@@ -32,6 +32,10 @@ const Profile = () => {
 
     const userGames = await axios.get(`${urlDev}/user/${user.userData.username}`);
     
+    if (!userGames.data) {
+      return;
+    };
+
     const playedGames = userGames.data.filter(game => game.status === 'played');
     const playedData = await getGameData(playedGames.map(game => game.gameid));
     setPlayed(playedData);
