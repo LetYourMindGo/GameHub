@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+import StarRating from 'react-svg-star-rating';
 import './GameDetails.css';
 
 const GameDetails = () => {
@@ -54,6 +55,16 @@ const GameDetails = () => {
     return {__html: gameInfo.description}
   };
 
+  const getRating = () => {
+    if (!gameInfo.ratings) {
+      return;
+    }
+    const ratings = gameInfo.ratings.map(rating => rating.rating);
+    const ratingsSum = ratings.reduce((a, b) => a + b, 0);
+    const rating = (ratingsSum / ratings.length);
+    return rating;
+  }
+
   return (
     <div className="page-content__game-container">
       {gameInfo && (
@@ -73,6 +84,9 @@ const GameDetails = () => {
             <p className="details__info">Main Story: {gameInfo.gameplayMain && gameInfo.gameplayMain}h</p>
             <p className="details__info">Main Story + Extras: {gameInfo.gameplayMainExtra && gameInfo.gameplayMainExtra}h</p>
             <p className="details__info">Completionist: {gameInfo.gameplayCompletionist && gameInfo.gameplayCompletionist}h</p>
+            <p>Rating:
+              <StarRating activeColor="#ffffff" emptyColor="#292929" hoverColor="#ffffff" starClassName="right__star" initialRating={getRating()} isReadOnly={true} />
+            </p>
           </div>
         </>
       )}
