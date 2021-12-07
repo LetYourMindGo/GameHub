@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
+import ProfileGame from '../ProfileGame/ProfileGame';
 import './Profile.css';
 
 const Profile = () => {
@@ -93,21 +94,21 @@ const Profile = () => {
         <>
           <h2 className="profile-games__title">Games marked as played</h2>
           <div className="profile-games__played">
-            {played.map(game => <><p>{game.gameid}</p><p>{game.status}</p></>)}
+            {played.map(game => <ProfileGame game={game} />)}
           </div>
         </> }
         { wish.length > 0 &&
         <>
           <h2 className="profile-games__title">Games marked as wish to play</h2>
           <div className="profile-games__wish">
-            {wish.map(game => <><p>{game.gameid}</p><p>{game.status}</p></>)}
+            {wish.map(game => <ProfileGame game={game} />)}
           </div>
         </> }
         { playing.length > 0 &&
         <>
           <h2 className="profile-games__title">Games marked as playing</h2>
           <div className="profile-games__playing">
-            {playing.map(game => <><p>{game.gameid}</p><p>{game.status}</p></>)}
+            {playing.map(game => <ProfileGame game={game} />)}
           </div>
         </> }
       </div>
