@@ -19,6 +19,7 @@ const SearchForm = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
+    e.target.reset();
     dispatch(
       setSearchQuery(query)
     );
